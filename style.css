@@ -1,0 +1,223 @@
+/* Algemene styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    padding: 1rem;
+    text-align: center;
+    background-color: #111;
+    margin-bottom: 1rem;
+  }
+  
+  h1, h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* "Vandaag" sectie */
+  #vandaag {
+    padding: 1rem;
+    width: fit-content;      /* hierdoor is het blokje precies zo breed als de tekst */
+    margin: 2rem auto 0.5rem auto; 
+    /* 2rem marge boven, auto links/rechts (centreert), 
+       0.5rem marge onder, auto links/rechts (centreert) */
+    text-align: left;
+  }
+  
+/* Kalender sectie */
+#kalender > h2,
+  
+  .calendar-container {
+    width: fit-content;
+    margin: 1rem auto; /* wat extra marge */
+    
+    display: grid;
+    grid-template-columns: repeat(6, 120px);
+    grid-auto-rows: 120px;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  /* Rest van je .day-entry styling etc. blijft ongewijzigd */
+  
+  
+  .day-entry {
+    background-color: #111;
+    border: 1px solid #333;
+    color: #fff;
+    text-align: center;
+    
+    /* Beginbreedte/-hoogte */
+    width: 120px;
+    height: 120px;
+    
+    box-sizing: border-box;
+    padding: 0.4rem;
+    
+    /* Zorgen dat tekst niet uit de tegel loopt */
+    overflow: hidden;
+    
+    /* Centraal uitlijnen van de inhoud */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Voor de animatie */
+    transition: transform 0.3s ease;
+  }
+  
+  .day-entry:hover {
+    transform: scale(1.1);
+    z-index: 1; /* zodat deze boven de andere tegels zweeft */
+  }
+  
+  /* Datumtekst 50% kleiner */
+  .day-entry h3 {
+    font-size: 0.5rem; 
+    margin-bottom: 0.2rem;
+    /* Eventueel multiline ellipsis als je dat wilt */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Korte samenvatting ~20% kleiner dan normaal */
+  .day-entry p {
+    font-size: 0.8rem; 
+    margin: 0.2rem 0;
+  
+    /* Ook multiline ellipsis eventueel */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .month-block {
+    /* Zentert de hele maandsectie (titel + grid) */
+    width: fit-content;
+    margin: 2rem auto; /* zo staat hij in het midden, evt. wat extra marge erboven/onder */
+  }
+  
+  /* De maandtitel boven de grid */
+  .month-block h2 {
+    text-align: left; /* zodat de tekst links uitgelijnd is, maar de hele .month-block is gecentreerd */
+    margin: 0.5rem 0;
+  }
+  
+  /* De grid zelf (je bestaande .calendar-container-stijl) */
+  .month-block .calendar-container {
+    width: fit-content;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 120px);
+    grid-auto-rows: 120px;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  
+  
+  /* Pop-up styling */
+  #popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  #popup:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  #popup-content {
+    background-color: #111;
+    padding: 1rem;
+    max-width: 400px;
+    border: 1px solid #333;
+    text-align: left;
+    /* Als je lange tekst hebt, kun je scrollen: */
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  #popup-content p {
+    margin-bottom: 0.8rem; 
+    /* Zo krijg je wat extra ruimte tussen alinea’s. */
+  }
+  
+  
+  #closePopup {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+  
+  #closePopup:hover {
+    background-color: #555;
+  }
+  
+
+  #insights > h2 {
+    width: fit-content;      /* hierdoor is het blokje precies zo breed als de tekst */
+    margin: 2rem auto 0.5rem auto; 
+    /* 2rem marge boven, auto links/rechts (centreert), 
+       0.5rem marge onder, auto links/rechts (centreert) */
+    text-align: left;
+  }
+
+  /* Heatmap-stijlen */
+#heatmap-container {
+    margin: 2rem auto;
+    max-width: 600px; /* kies zelf de breedte */
+    text-align: center;
+  }
+  
+  .heatmap-grid {
+    display: grid;
+    /* aantal kolommen bepalen. Je kunt ook 'auto-fill' gebruiken */
+    grid-template-columns: repeat(auto-fill, 24px);
+    gap: 4px;
+    justify-content: center;
+  }
+  
+  .heatmap-cell {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    transition: transform 0.2s ease;
+    cursor: pointer; /* als je bijv. tooltip hebt */
+  }
+  
+  .heatmap-cell:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
+  

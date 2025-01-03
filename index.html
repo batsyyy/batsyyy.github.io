@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oliver's Dagboek</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Oliver's Dagboek</h1>
+  </header>
+
+  <!-- Sectie voor de "Vandaag"-entry -->
+  <section id="vandaag">
+    <h2>Vandaag</h2>
+    <div id="vandaag-content">
+      <!-- Deze content vullen we via script.js -->
+    </div>
+  </section>
+
+  <!-- Sectie voor de kalender -->
+  <section id="kalender">
+    <h2>Kalender</h2>
+    <div id="calendar-container">
+      <!-- Hier komt de lijst met dagen, ook via script.js -->
+    </div>
+  </section>
+
+  <!-- Pop-up voor volledige notities -->
+  <div id="popup" class="hidden">
+    <div id="popup-content"></div>
+    <button id="closePopup">Sluiten</button>
+  </div>
+
+
+  <section id="insights">
+    <h2>Inzichten & Heatmap</h2>
+    <div id="heatmap-container"></div>
+  </section>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
