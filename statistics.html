@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistieken - Oliver's Dagboek</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Oliver's Dagboek</h1>
+      <button class="menu-toggle" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Dagboek</a></li>
+          <li><a href="statistics.html" class="active">Statistieken</a></li>
+          <li><a href="about.html">Over</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h2 class="page-title">Statistieken Overzicht</h2>
+
+    <div class="stats-grid">
+      <section class="stat-card word-cloud">
+        <h3>Meest Gebruikte Woorden</h3>
+        <div class="word-list"></div>
+      </section>
+
+      <section class="stat-card mood-chart">
+        <h3>Stemmingsverloop</h3>
+        <canvas id="moodChart"></canvas>
+      </section>
+
+      <section class="stat-card heatmap">
+        <h3>Stress & Angst Heatmap</h3>
+        <div id="heatmap-container"></div>
+      </section>
+
+      <section class="stat-card panic-chart">
+        <h3>Paniekaanvallen per Dag</h3>
+        <canvas id="panicChart"></canvas>
+      </section>
+    </div>
+
+    <!-- Pop-up voor volledige notities -->
+    <div id="popup" class="hidden">
+      <div id="popup-content">
+        <button
+          class="close-button"
+          id="closePopup"
+          aria-label="Sluiten"
+        ></button>
+        <div class="popup-text"></div>
+      </div>
+    </div>
+
+    <div id="container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="background.js"></script>
+    <script src="statistics.js"></script>
+  </body>
+</html>

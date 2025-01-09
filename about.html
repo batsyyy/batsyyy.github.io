@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Over - Oliver's Dagboek</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Inconsolata:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Oliver's Dagboek</h1>
+      <button class="menu-toggle" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Dagboek</a></li>
+          <li><a href="statistics.html">Statistieken</a></li>
+          <li><a href="about.html" class="active">Over</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h2 class="page-title">Over Mij & Dit Project</h2>
+
+    <div class="about-container">
+      <section class="about-card about-me">
+        <h3>Over Mij</h3>
+        <div class="about-content with-image">
+          <div class="about-text">
+            <p>
+              Hey! Ik ben Oliver, 20 jaar en kom uit Brabant. Heuuuu. Ik
+              struggle al een paar jaar met allerlei nare gedachtes, angsten en
+              paniekaanvallen. Officieel heb ik hypochondrie. Dat is een fancy
+              woord voor ziektevrees. Helaas is mijn angstcentrum in mijn hoofd
+              niet lekker rustig, zoals bij de meeste mensen. Ik ben heel snel
+              en vaak bezorgd over mijn eigen gezondheid. Alles wat ik voel in
+              mijn lichaam kan ik zien als potentieel gevaar om dood te gaan.
+              Een steek in mijn hart: dit is een hartaanval! Wat pijn in mijn
+              hoofd: dit moet wel een hersenbloeding zijn! Etc. etc.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="media/profile.jpg" alt="Oliver's foto" />
+          </div>
+        </div>
+      </section>
+      <section class="about-card">
+        <h3>Waarom Dit Dagboek?</h3>
+        <div class="about-content">
+          Ik heb deze site gemaakt omdat ik mensen een kijkje in mijn hoofd wil
+          geven. Dit doe ik door middel van een dagboek en statistieken uit dit
+          dagboek. Waarom zou dit boeiend moeten zijn? Omdat het een unieke
+          weergave in iemand zijn hoofd die lijdt aan een mentale aandoening
+          haha. Het klinkt best "dark" allemaal, maar ik denk dat het wel iets
+          moois is.
+        </div>
+      </section>
+    </div>
+
+    <div id="container"></div>
+
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="background.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

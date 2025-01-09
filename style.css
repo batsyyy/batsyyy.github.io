@@ -1,223 +1,1355 @@
 /* Algemene styling */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-  }
-  
-  header {
-    padding: 1rem;
-    text-align: center;
-    background-color: #111;
-    margin-bottom: 1rem;
-  }
-  
-  h1, h2 {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* "Vandaag" sectie */
-  #vandaag {
-    padding: 1rem;
-    width: fit-content;      /* hierdoor is het blokje precies zo breed als de tekst */
-    margin: 2rem auto 0.5rem auto; 
-    /* 2rem marge boven, auto links/rechts (centreert), 
-       0.5rem marge onder, auto links/rechts (centreert) */
-    text-align: left;
-  }
-  
+
+.atkinson-hyperlegible-regular {
+  font-family: "Atkinson Hyperlegible", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-bold {
+  font-family: "Atkinson Hyperlegible", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.atkinson-hyperlegible-regular-italic {
+  font-family: "Atkinson Hyperlegible", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.atkinson-hyperlegible-bold-italic {
+  font-family: "Atkinson Hyperlegible", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+body {
+  margin: 0;
+  padding-top: 5rem;
+  overflow-x: hidden;
+  width: 100vw;
+  max-width: 100%;
+  background-color: #000;
+  color: #fff;
+  font-family: "Atkinson Hyperlegible", Arial, sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 3rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
+
+h1,
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+/* "Vandaag" sectie */
+#vandaag {
+  position: relative;
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 3rem;
+  max-width: 800px;
+  width: 90%;
+  margin: 3rem auto 5rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  height: auto;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+.title-container {
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: contentFadeIn 0.6s ease forwards 0.4s;
+}
+
+.title-container h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.current-date {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+.today-notes,
+.today-stats {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  padding: 0;
+}
+
+#vandaag.expanded .today-notes,
+#vandaag.expanded .today-stats {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 2rem;
+}
+
+.today-summary {
+  line-height: 1.8;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.today-stats {
+  display: flex;
+  gap: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
 /* Kalender sectie */
-#kalender > h2,
-  
-  .calendar-container {
-    width: fit-content;
-    margin: 1rem auto; /* wat extra marge */
-    
-    display: grid;
-    grid-template-columns: repeat(6, 120px);
-    grid-auto-rows: 120px;
+#kalender {
+  margin-top: 10rem;
+}
+
+#kalender > h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.calendar-container {
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, 120px);
+  grid-auto-rows: 120px;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+/* Voeg weekdag labels toe */
+.month-block h2 {
+  text-align: left;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.weekday-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 120px);
+  gap: 1.5rem;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.weekday-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Rest van je .day-entry styling etc. blijft ongewijzigd */
+
+.day-entry {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.181);
+  border-radius: 15px;
+  color: #fff;
+  text-align: center;
+  width: 120px;
+  height: 120px;
+  box-sizing: border-box;
+  padding: 0.4rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeSlideIn 0.5s ease forwards;
+  transform-origin: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.day-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.day-entry:hover {
+  transform: scale(1.08) translateY(-8px);
+}
+
+.day-entry:hover::before {
+  opacity: 1;
+}
+
+.day-entry:hover h3 {
+  transform: translateY(-2px);
+}
+
+.day-entry:hover p {
+  transform: translateY(2px);
+}
+
+.day-entry h3,
+.day-entry p {
+  transition: transform 0.3s ease;
+}
+
+/* Datumtekst 50% kleiner */
+.day-entry h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Korte samenvatting ~20% kleiner dan normaal */
+.day-entry p {
+  font-size: 0.75rem;
+  margin: 0.4rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.month-block {
+  width: fit-content;
+  margin: 2rem auto;
+}
+
+/* De maandtitel boven de grid */
+.month-block h2 {
+  text-align: left;
+  margin: 0.5rem 0;
+}
+
+/* De grid zelf (je bestaande .calendar-container-stijl) */
+.month-block .calendar-container {
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, 120px);
+  grid-auto-rows: 120px;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+/* Pop-up styling */
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+#popup.visible {
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  visibility: visible;
+}
+
+#popup-content {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2.5rem;
+  max-width: 600px; /* vaste maximale breedte */
+  width: 90%; /* responsive maar niet te breed */
+  max-height: 80vh;
+  overflow-y: auto;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.popup-text {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.popup-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.popup-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.popup-content {
+  line-height: 1.6;
+}
+
+.popup-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+#popup.visible #popup-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+#popup-content p {
+  margin-bottom: 0.8rem;
+  /* Zo krijg je wat extra ruimte tussen alinea’s. */
+}
+
+/* Styling voor het kruisje */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button::before,
+.close-button::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.close-button::before {
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover::before,
+.close-button:hover::after {
+  background-color: #fff;
+}
+
+#insights > h2 {
+  width: fit-content; /* hierdoor is het blokje precies zo breed als de tekst */
+  margin: 2rem auto 0.5rem auto;
+  /* 2rem marge boven, auto links/rechts (centreert), 
+       0.5rem marge onder, auto links/rechts (centreert) */
+  text-align: left;
+}
+
+/* Heatmap-stijlen */
+#insights {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2.5rem;
+  max-width: 800px;
+  width: 90%;
+  margin: 5rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#insights h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#heatmap-container {
+  margin: 2rem auto;
+  max-width: 100%;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Styling voor Three.js background canvas */
+#container canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Styling voor Chart.js canvas */
+#panicChart {
+  position: relative;
+  width: 100% !important;
+  height: 300px !important;
+  margin: 1rem 0;
+}
+
+#panic-section {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2.5rem;
+  max-width: 800px;
+  width: 90%;
+  margin: 5rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#panic-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#vandaag .title-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+#vandaag .title-container h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#vandaag .current-date {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.main-nav {
+  flex-grow: 1;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.main-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-nav a.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  header {
     gap: 1rem;
-    padding: 1rem 0;
   }
-  
-  /* Rest van je .day-entry styling etc. blijft ongewijzigd */
-  
-  
-  .day-entry {
-    background-color: #111;
-    border: 1px solid #333;
-    color: #fff;
-    text-align: center;
-    
-    /* Beginbreedte/-hoogte */
-    width: 120px;
-    height: 120px;
-    
-    box-sizing: border-box;
-    padding: 0.4rem;
-    
-    /* Zorgen dat tekst niet uit de tegel loopt */
-    overflow: hidden;
-    
-    /* Centraal uitlijnen van de inhoud */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    /* Voor de animatie */
-    transition: transform 0.3s ease;
+
+  .menu-toggle {
+    margin-left: auto;
   }
-  
-  .day-entry:hover {
-    transform: scale(1.1);
-    z-index: 1; /* zodat deze boven de andere tegels zweeft */
-  }
-  
-  /* Datumtekst 50% kleiner */
-  .day-entry h3 {
-    font-size: 0.5rem; 
-    margin-bottom: 0.2rem;
-    /* Eventueel multiline ellipsis als je dat wilt */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  /* Korte samenvatting ~20% kleiner dan normaal */
-  .day-entry p {
-    font-size: 0.8rem; 
-    margin: 0.2rem 0;
-  
-    /* Ook multiline ellipsis eventueel */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .month-block {
-    /* Zentert de hele maandsectie (titel + grid) */
-    width: fit-content;
-    margin: 2rem auto; /* zo staat hij in het midden, evt. wat extra marge erboven/onder */
-  }
-  
-  /* De maandtitel boven de grid */
-  .month-block h2 {
-    text-align: left; /* zodat de tekst links uitgelijnd is, maar de hele .month-block is gecentreerd */
-    margin: 0.5rem 0;
-  }
-  
-  /* De grid zelf (je bestaande .calendar-container-stijl) */
-  .month-block .calendar-container {
-    width: fit-content;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(6, 120px);
-    grid-auto-rows: 120px;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-  
-  
-  
-  /* Pop-up styling */
-  #popup {
+
+  .main-nav {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: rgba(17, 17, 17, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 5rem 2rem 2rem 2rem;
+    transition: all 0.3s ease;
   }
-  
-  .hidden {
-    visibility: hidden;
+
+  .main-nav.active {
+    right: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+#stats-overview {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2.5rem;
+  max-width: 800px;
+  width: 90%;
+  margin: 5rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#stats-overview h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-content {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.word-cloud {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.word-cloud h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.word-item:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.word {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.count {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8em;
+}
+
+.mood-chart {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.mood-chart h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mood-chart canvas {
+  height: 300px !important;
+  width: 100% !important;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+  gap: 2px;
+  padding: 1rem;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background-color: rgba(255, 71, 87, 0.1);
+  transition: transform 0.2s;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.2);
+}
+
+.panic-chart canvas,
+.mood-chart canvas {
+  height: 300px !important;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin: 2rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background-color: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  min-height: 350px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-card canvas {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-card {
+  background: rgba(17, 17, 17, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.about-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.about-content p {
+  margin-bottom: 1.5rem;
+}
+
+.entry-thumbnail {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 0.3rem 0;
+}
+
+.entry-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.image-gallery figure {
+  margin: 0;
+  position: relative;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
+.image-gallery figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0 0 8px 8px;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.file-input {
+  display: none;
+}
+
+.mood-indicator {
+  width: 32px;
+  height: 8px;
+  border-radius: 4px;
+  margin: 8px auto;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mood-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.day-entry:hover .mood-indicator {
+  transform: scale(1.2);
+  opacity: 1;
+  width: 40px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.day-entry.empty {
+  background-color: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.day-entry.empty:hover {
+  transform: none;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.day-entry.mood-good {
+  background-color: rgba(46, 213, 115, 0.2);
+  border-color: rgba(46, 213, 115, 0.4);
+}
+
+.day-entry.mood-okay {
+  background-color: rgba(255, 199, 0, 0.2);
+  border-color: rgba(255, 199, 0, 0.4);
+}
+
+.day-entry.mood-moderate {
+  background-color: rgba(255, 145, 0, 0.2);
+  border-color: rgba(255, 145, 0, 0.4);
+}
+
+.day-entry.mood-heavy {
+  background-color: rgba(255, 71, 87, 0.2);
+  border-color: rgba(255, 71, 87, 0.4);
+}
+
+.day-entry.empty {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Specifieke hover effecten per mood */
+.day-entry.mood-good:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(46, 213, 115, 0.2);
+}
+
+.day-entry.mood-okay:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 199, 0, 0.2);
+}
+
+.day-entry.mood-moderate:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 145, 0, 0.2);
+}
+
+.day-entry.mood-heavy:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 71, 87, 0.2);
+}
+
+.day-entry .full-notes {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.95);
+  padding: 1.5rem;
+  border-radius: 15px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.day-entry:hover .full-notes {
+  display: block;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
+    transform: translate(-50%, -40%);
   }
-  
-  #popup:not(.hidden) {
-    visibility: visible;
+  to {
     opacity: 1;
+    transform: translate(-50%, -50%);
   }
-  
-  #popup-content {
-    background-color: #111;
-    padding: 1rem;
-    max-width: 400px;
-    border: 1px solid #333;
-    text-align: left;
-    /* Als je lange tekst hebt, kun je scrollen: */
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  
-  #popup-content p {
-    margin-bottom: 0.8rem; 
-    /* Zo krijg je wat extra ruimte tussen alinea’s. */
-  }
-  
-  
-  #closePopup {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-  }
-  
-  #closePopup:hover {
-    background-color: #555;
-  }
-  
+}
 
-  #insights > h2 {
-    width: fit-content;      /* hierdoor is het blokje precies zo breed als de tekst */
-    margin: 2rem auto 0.5rem auto; 
-    /* 2rem marge boven, auto links/rechts (centreert), 
-       0.5rem marge onder, auto links/rechts (centreert) */
-    text-align: left;
-  }
+.full-notes p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: pre-wrap;
+  text-align: left;
+}
 
-  /* Heatmap-stijlen */
-#heatmap-container {
-    margin: 2rem auto;
-    max-width: 600px; /* kies zelf de breedte */
-    text-align: center;
+/* Zorg dat de notities links verschijnen als er geen ruimte rechts is */
+.day-entry:nth-child(7n) .full-notes,
+.day-entry:nth-child(7n-1) .full-notes {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.today-summary h3,
+.today-notes h3 {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.today-notes {
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .heatmap-grid {
-    display: grid;
-    /* aantal kolommen bepalen. Je kunt ook 'auto-fill' gebruiken */
-    grid-template-columns: repeat(auto-fill, 24px);
-    gap: 4px;
-    justify-content: center;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .heatmap-cell {
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-    transition: transform 0.2s ease;
-    cursor: pointer; /* als je bijv. tooltip hebt */
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .heatmap-cell:hover {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-container {
+  opacity: 0;
+  animation: contentFadeIn 0.6s ease forwards 0.4s;
+}
+
+.today-summary {
+  opacity: 0;
+  animation: contentFadeIn 0.6s ease forwards 0.6s;
+}
+
+.today-notes {
+  opacity: 0;
+  animation: contentFadeIn 0.6s ease forwards 0.8s;
+}
+
+.today-stats {
+  opacity: 0;
+  animation: contentFadeIn 0.6s ease forwards 1s;
+}
+
+.expand-button {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.expand-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.expand-button::before {
+  content: "+";
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.4s ease;
+}
+
+#vandaag.expanded .expand-button::before {
+  transform: rotate(45deg);
+}
+
+.today-notes,
+.today-stats {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  padding: 0;
+}
+
+#vandaag.expanded .today-notes,
+#vandaag.expanded .today-stats {
+  max-height: 500px; /* Grote genoeg waarde voor de content */
+  opacity: 1;
+  margin-top: 2rem;
+}
+
+.hero-gif {
+  width: 100%;
+  max-width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-gif img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: scale(1.5);
+  transform-origin: center center;
+
+  /* Kies één of combineer meerdere van deze effecten: */
+  filter: brightness(0.5) /* Maakt helderder */ /* Verhoogt contrast */
+    saturate(0.5) /* Verhoogt kleurverzadiging */
+    drop-shadow(0 0 20px rgba(71, 123, 255, 0.5)); /* Voegt gekleurde gloed toe */
+
+  mix-blend-mode: screen; /* Experimenteer met: multiply, overlay, screen, hard-light */
+  animation: pulseEffect 4s ease-in-out infinite;
+}
+
+/* Pulserende gloed animatie */
+@keyframes pulseEffect {
+  0% {
+    filter: hue-rotate(0deg) brightness(1) saturate(1.5)
+      drop-shadow(0 0 20px rgba(71, 123, 255, 0.3));
+  }
+  50% {
+    filter: hue-rotate(45deg) brightness(1.2) saturate(2)
+      drop-shadow(0 0 30px rgba(46, 213, 115, 0.5));
+  }
+  100% {
+    filter: hue-rotate(0deg) brightness(1) saturate(1.5)
+      drop-shadow(0 0 20px rgba(71, 123, 255, 0.3));
+  }
+}
+
+/* Optioneel: hover effect */
+.hero-gif img:hover {
+  filter: hue-rotate(-45deg) brightness(1.3) saturate(1.8)
+    drop-shadow(0 0 25px rgba(255, 71, 87, 0.6));
+  transition: filter 0.5s ease;
+}
+
+/* Media query voor kleinere schermen */
+@media (max-width: 768px) {
+  .hero-gif img {
+    transform: scale(1.2);
+  }
+}
+
+.anxiety-thoughts {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.thought {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2.2rem;
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: thoughtFadeIn 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  white-space: normal;
+  max-width: 300px;
+  text-align: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes thoughtFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  25% {
+    opacity: var(--final-opacity, 0.7);
+    transform: scale(1);
+  }
+  75% {
+    opacity: var(--final-opacity, 0.7);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
     transform: scale(1.1);
-    z-index: 1;
   }
-  
+}
+
+.calm-button {
+  position: absolute;
+  bottom: 5.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: rgba(46, 213, 115, 0.2);
+  border: 2px solid rgba(46, 213, 115, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 3;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+.calm-button:hover {
+  background: rgba(46, 213, 115, 0.4);
+  transform: translateX(-50%) scale(1.05);
+}
+
+.calm-button.active {
+  background: rgba(46, 213, 115, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(46, 213, 115, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 213, 115, 0);
+  }
+}
+
+@keyframes thoughtFadeOut {
+  0% {
+    opacity: var(--final-opacity, 0.7);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.mood-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0 2rem 0;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: rgba(17, 17, 17, 0.3);
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 1rem auto 2rem auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Kleuren voor de legenda die overeenkomen met de bestaande mood classes */
+.mood-good {
+  background-color: rgba(46, 213, 115, 0.6);
+}
+
+.mood-okay {
+  background-color: rgba(255, 213, 71, 0.6);
+}
+
+.mood-moderate {
+  background-color: rgba(255, 142, 71, 0.6);
+}
+
+.mood-heavy {
+  background-color: rgba(255, 71, 87, 0.6);
+}
+
+.about-content.with-image {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .about-content.with-image {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    margin-top: 1.5rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
