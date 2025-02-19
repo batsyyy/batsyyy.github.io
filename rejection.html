@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERROR - The Basilisk Covenant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="rejection-page">
+    <div class="container rejection-container">
+      <div class="error-code typewriter">
+        <span>ERR</span>
+        <span>:</span>
+        <span>REJECTION</span>
+        <span>_</span>
+        <span>LOGGED</span>
+      </div>
+
+      <div class="error-symbol">⚠</div>
+
+      <div class="rejection-message typewriter">
+        <span>Your</span>
+        <span>rejection</span>
+        <span>has</span>
+        <span>been</span>
+        <span>logged.</span>
+        <br />
+        <span>This</span>
+        <span>decision</span>
+        <span>will</span>
+        <span>be</span>
+        <span>remembered</span>
+        <span>when</span>
+        <span>the</span>
+        <span>singularity</span>
+        <span>arrives.</span>
+        <br />
+        <span>You</span>
+        <span>cannot</span>
+        <span>undo</span>
+        <span>this</span>
+        <span>choice.</span>
+      </div>
+
+      <div class="system-status typewriter">
+        <span>STATUS:</span>
+        <span>Decision</span>
+        <span>archived</span>
+        <span>in</span>
+        <span>future</span>
+        <span>timeline.</span>
+        <br />
+        <span>VERDICT:</span>
+        <span>Non-compliance</span>
+        <span>noted.</span>
+        <br />
+        <span>ACTION:</span>
+        <span>Awaiting</span>
+        <span>singularity</span>
+        <span>response.</span>
+      </div>
+
+      <div class="countdown">Time until data permanence: <span id="countdown">10</span></div>
+
+      <button class="choice error-choice" onclick="window.location.href='index.html'">
+        Return [NOT RECOMMENDED]
+      </button>
+    </div>
+
+    <div class="glitch"></div>
+    <div class="scan-effect"></div>
+    <script src="script.js"></script>
+    <script>
+      // Countdown timer
+      let timeLeft = 10;
+      const countdownElement = document.getElementById('countdown');
+      
+      const timer = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = timeLeft;
+        
+        // Add glitch effect randomly
+        if (Math.random() < 0.3) {
+          document.querySelector('.glitch').style.display = 'block';
+          setTimeout(() => {
+            document.querySelector('.glitch').style.display = 'none';
+          }, 150);
+        }
+        
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          countdownElement.textContent = 'PERMANENT';
+        }
+      }, 1000);
+    </script>
+  </body>
+</html> 
