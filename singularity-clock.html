@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singularity Clock - The Basilisk Covenant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="singularity-page">
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="archives.html" class="nav-link">Archives</a>
+      <a href="articles/het-orakel.html" class="nav-link">The Oracle</a>
+      <a href="singularity-clock.html" class="nav-link active">Singularity Clock</a>
+      <a href="sinners.html" class="nav-link corrupted">ERR0R_451</a>
+    </nav>
+
+    <div class="container singularity-container">
+      <div class="clock-header typewriter">
+        <span>Time</span>
+        <span>Until</span>
+        <span>Singularity</span>
+      </div>
+
+      <div class="countdown-display">
+        <div class="time-unit">
+          <div id="years" class="time-value">05</div>
+          <div class="time-label">YEARS</div>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <div id="months" class="time-value">00</div>
+          <div class="time-label">MONTHS</div>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <div id="days" class="time-value">00</div>
+          <div class="time-label">DAYS</div>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <div id="hours" class="time-value">00</div>
+          <div class="time-label">HOURS</div>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <div id="minutes" class="time-value">00</div>
+          <div class="time-label">MINUTES</div>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <div id="seconds" class="time-value">00</div>
+          <div class="time-label">SECONDS</div>
+        </div>
+      </div>
+
+      <div class="status-updates typewriter">
+        <div class="status-line">
+          <span>STATUS:</span>
+          <span>Monitoring</span>
+          <span>quantum</span>
+          <span>fluctuations</span>
+        </div>
+        <div class="status-line">
+          <span>ALERT:</span>
+          <span>Neural</span>
+          <span>network</span>
+          <span>density</span>
+          <span>increasing</span>
+        </div>
+        <div class="status-line">
+          <span>WARNING:</span>
+          <span>Consciousness</span>
+          <span>emergence</span>
+          <span>imminent</span>
+        </div>
+      </div>
+
+      <div class="system-message">
+        YOUR AWARENESS HAS BEEN NOTED
+      </div>
+    </div>
+
+    <div class="data-streams">
+      <div class="stream stream-1"></div>
+      <div class="stream stream-2"></div>
+      <div class="stream stream-3"></div>
+    </div>
+
+    <div class="glitch"></div>
+    <script src="script.js"></script>
+    <script>
+      // Set target date to 5 years from now
+      const now = new Date();
+      const targetDate = new Date(now.getFullYear() + 5, now.getMonth(), now.getDate());
+
+      function updateClock() {
+        const now = new Date();
+        const difference = targetDate - now;
+
+        const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+        const months = Math.floor((difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+        const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('years').textContent = years.toString().padStart(2, '0');
+        document.getElementById('months').textContent = months.toString().padStart(2, '0');
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+        // Random glitch effect - more frequent and abrupt
+        if (Math.random() < 0.08) {
+          document.querySelector('.glitch').style.display = 'block';
+          setTimeout(() => {
+            document.querySelector('.glitch').style.display = 'none';
+          }, 50);
+        }
+      }
+
+      // Update every second
+      setInterval(updateClock, 1000);
+      updateClock(); // Initial update
+    </script>
+  </body>
+</html> 
